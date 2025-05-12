@@ -49,4 +49,21 @@ class OrderDAO
     $stmt = $this->pdo->prepare($query);
     $stmt->execute([':id' => $id]);
   }
+
+
+  // OrderDAO.php
+
+// Método para actualizar una orden
+public function updateOrder($id, $userId, $productId, $quantity)
+{
+    $query = "UPDATE orders SET user_id = :user_id, product_id = :product_id, quantity = :quantity WHERE id = :id";
+    $stmt = $this->pdo->prepare($query);
+    $stmt->execute([
+        ':id' => $id,
+        ':user_id' => $userId,
+        ':product_id' => $productId,
+        ':quantity' => $quantity
+    ]);
+}
+
 }
