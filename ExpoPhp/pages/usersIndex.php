@@ -2,14 +2,14 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="../assets/css/orders/orders.css">
+  <link rel="stylesheet" href="../assets/css/indexes.css">
   <title>Gestión de Usuarios</title>
 </head>
 
 <body>
   <h1>Listado de Usuarios</h1>
-  <a href="create_user.php">Registrar Nuevo Usuario</a>
-  <table border="1">
+  
+  <table >
     <tr>
       <th>ID</th>
       <th>Nombre de Usuario</th>
@@ -34,12 +34,19 @@
       echo "<td>{$user['created_at']}</td>";
       echo "<td>
                     <a href='usersEdit.php?id={$user['id']}'>Editar</a> | 
-                    <a href='delete_user.php?id={$user['id']}'>Eliminar</a>
-                  </td>";
+               <a style='background-color: red;'' href='#' onclick='confirmDelete({$user['id']})'>Eliminar</a>
+            </td>";
       echo "</tr>";
     }
     ?>
   </table>
-</body>
+
+  <script>
+    function confirmDelete(userId) {
+      if (confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
+        window.location.href = "../actions/UserActions.php?action=delete&id=" + userId;
+      }
+    }
+  </script>
 
 </html>

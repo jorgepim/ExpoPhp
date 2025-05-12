@@ -10,7 +10,7 @@ switch ($action) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $userDAO->registerUser($username, $email, $password);
-    header("Location: ../pages/users.php");
+    header("Location: ../pages/usersIndex.php");
     break;
 
   case 'update':
@@ -26,13 +26,13 @@ switch ($action) {
     $id = $_POST['id'];
     $newPassword = $_POST['new_password'];
     $userDAO->updatePassword($id, $newPassword);
-    header("Location: ../pages/users.php");
+    header("Location: ../index.php");
     break;
 
   case 'delete':
     $id = $_GET['id'];
     $userDAO->deleteUser($id);
-    header("Location: ../pages/users.php");
+    header("Location: ../pages/usersIndex.php");
     break;
 
   case 'login':
