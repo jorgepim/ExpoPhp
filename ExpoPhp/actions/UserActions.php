@@ -19,7 +19,7 @@ switch ($action) {
     $email = $_POST['email'];
     $role = $_POST['role'];
     $userDAO->updateUser($id, $username, $email, $role);
-    header("Location: ../pages/users.php");
+    header("Location: ../pages/usersIndex.php");
     break;
 
   case 'change_password':
@@ -39,7 +39,7 @@ switch ($action) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     if ($userDAO->loginUser($email, $password)) {
-      header("Location: ../pages/users.php");
+      header("Location: ../pages/usersIndex.php");
     } else {
       echo "Correo o contraseña incorrectos.";
     }

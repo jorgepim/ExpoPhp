@@ -6,7 +6,7 @@ class DBConnection
 
   private $host = "localhost";
   private $dbname = "SimpleCRUD";
-  private $username = "spring_user";
+  private $username = "root";
   private $password = "123321";
 
   // Método privado para evitar múltiples instancias
