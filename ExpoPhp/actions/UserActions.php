@@ -9,8 +9,7 @@ switch ($action) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $role = $_POST['role'] ?? 'user';
-    $userDAO->registerUser($username, $email, $password, $role);
+    $userDAO->registerUser($username, $email, $password);
     header("Location: ../pages/users.php");
     break;
 
@@ -49,9 +48,9 @@ switch ($action) {
   case 'logout':
     session_start();
     session_destroy();
-    header("Location: ../pages/login.php");
+    header("Location: ../index.php");
     break;
 
   default:
-    header("Location: ../pages/users.php");
+    header("Location: ../index.php");
 }

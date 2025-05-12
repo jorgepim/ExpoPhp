@@ -14,7 +14,7 @@
 
     <div class="container-form">
 
-      <form class="sign-in" action="/actions/signIn_user.php" method="post">
+      <form class="sign-in" action="/actions/UserActions.php?action=login" method="post">
 
         <h2>Iniciar Sesión</h2>
         <span>Use su correo y contraseña</span>
@@ -38,7 +38,7 @@
 
     <div class="container-form">
 
-      <form class="sign-up" action="/actions/signUp_user.php" method="post">
+      <form class="sign-up" action="/actions/UserActions.php?action=register" method="post">
 
         <h2>Registrarse</h2>
         <span>Use su correo electrónico para registrarse</span>
