@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
+    header("Location: orderIndex.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -7,25 +14,25 @@
 </head>
 
 <body>
-    <?php include 'partials/navbar.php'; ?>
-
-    <h1>Registrar Nueva Orden</h1>
     <?php
-    require_once __DIR__ . '/../includes/UserDAO.php';
-    require_once __DIR__ . '/../includes/ProductDAO.php';
+    session_start();
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: ../index.php");
+        exit;
+    }
 
-    $userDAO = new UserDAO();
+    include 'partials/navbar.php';
+
+    require_once __DIR__ . '/../includes/ProductDAO.php';
     $productDAO = new ProductDAO();
-    $users = $userDAO->getAllUsers();
     $products = $productDAO->getAllProducts();
     ?>
+
+    <h1>Registrar Nueva Orden</h1>
+
     <form method="post" action="../actions/OrderActions.php?action=add">
-        <label>Usuario:</label>
-        <select name="user_id" required>
-            <?php foreach ($users as $user) { ?>
-                <option value="<?php echo $user['id']; ?>"><?php echo $user['username']; ?></option>
-            <?php } ?>
-        </select><br>
+        <!-- user_id oculto desde la sesión -->
+        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
 
         <label>Producto:</label>
         <select name="product_id" required>
@@ -38,7 +45,7 @@
         <input type="number" name="quantity" required min="1"><br>
 
         <button type="submit">Guardar</button>
-        <a href="orderIndex.php">Cancelar</a>
+        <a href="userOrders.php">Cancelar</a>
     </form>
 </body>
 

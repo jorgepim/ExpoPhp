@@ -18,7 +18,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     <?php include 'partials/navbar.php'; ?>
 
     <h1>Listado de Órdenes</h1>
-    <a href="orderCreate.php">Registrar Nueva Orden</a>
+    
     <table border="1">
         <tr>
             <th>ID</th>
@@ -43,7 +43,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
             echo "<td>{$order['order_date']}</td>";
             echo "<td>
                     <a href='orderEdit.php?id={$order['id']}'>Editar</a> | 
-                    <a href='../actions/OrderActions.php?action=delete&id={$order['id']}' 
+                    <a style='background-color: red; color:white;' href='../actions/OrderActions.php?action=delete&id={$order['id']}' 
                        onclick=\"return confirm('¿Estás seguro de eliminar esta orden?');\">Eliminar</a>
                   </td>";
             echo "</tr>";

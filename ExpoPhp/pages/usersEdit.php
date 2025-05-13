@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 <html>
 
 <head>
-  <link rel="stylesheet" href="../assets/css/users/users.css">
+  <link rel="stylesheet" href="../assets/css/general.css">
   <title>Editar Usuario</title>
 </head>
 

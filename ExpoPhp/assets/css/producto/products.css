@@ -2,11 +2,12 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    flex-direction: column;
+    height: 90vh;
+    margin: 0 auto;
 }
+
 .success-message {
     background-color: #d4edda;
     color: #155724;
@@ -61,7 +62,8 @@ table {
     margin-top: 20px;
 }
 
-th, td {
+th,
+td {
     padding: 12px;
     text-align: center;
     border-bottom: 1px solid #ddd;

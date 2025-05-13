@@ -44,7 +44,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
       echo "<td>{$user['created_at']}</td>";
       echo "<td>
                     <a href='usersEdit.php?id={$user['id']}'>Editar</a> | 
-               <a style='background-color: red;'' href='#' onclick='confirmDelete({$user['id']})'>Eliminar</a>
+               <a style='background-color: red; color:white;'' href='#' onclick='confirmDelete({$user['id']})'>Eliminar</a>
             </td>";
       echo "</tr>";
     }
