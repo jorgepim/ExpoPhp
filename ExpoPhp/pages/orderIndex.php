@@ -1,10 +1,4 @@
-<?php
-session_start();
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header("Location: userOrders.php");
-    exit;
-}
-?>
+<?php require_once __DIR__ . '/../includes/authAdmin.php'; ?>
 
 <!DOCTYPE html>
 <html>
@@ -18,7 +12,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     <?php include 'partials/navbar.php'; ?>
 
     <h1>Listado de Órdenes</h1>
-    
+
     <table border="1">
         <tr>
             <th>ID</th>

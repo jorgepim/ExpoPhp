@@ -29,14 +29,21 @@ switch ($action) {
     break;
 
   case 'login':
+    session_start();
     $email = $_POST['email'];
     $password = $_POST['password'];
-    if ($userDAO->loginUser($email, $password)) {
+    $user = $userDAO->loginUser($email, $password);
+
+    if ($user) {
+      $_SESSION['user_id'] = $user['id'];
+      $_SESSION['username'] = $user['username'];
+      $_SESSION['role'] = $user['role'];
       header("Location: ../pages/usersIndex.php");
     } else {
       echo "Correo o contraseña incorrectos.";
     }
     break;
+
 
   case 'logout':
     session_start();

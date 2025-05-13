@@ -1,10 +1,4 @@
-<?php
-session_start();
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-  header("Location: userOrders.php");
-  exit;
-}
-?>
+<?php require_once __DIR__ . '/../includes/authAdmin.php'; ?>
 
 <!DOCTYPE html>
 <html>

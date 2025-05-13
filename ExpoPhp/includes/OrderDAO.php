@@ -62,9 +62,6 @@ class OrderDAO
     $stmt->execute([':id' => $id]);
   }
 
-
-  // OrderDAO.php
-
   // Método para actualizar una orden
   public function updateOrder($id, $userId, $productId, $quantity)
   {
