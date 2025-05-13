@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+  header("Location: userOrders.php");
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -7,6 +15,8 @@
 </head>
 
 <body>
+  <?php include 'partials/navbar.php'; ?>
+
   <h1>Editar Usuario</h1>
 
   <?php

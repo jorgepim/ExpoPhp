@@ -32,6 +32,18 @@ class OrderDAO
       ':quantity' => $quantity
     ]);
   }
+  
+  // Obtener órdenes por usuario (solo usuario específico)
+  public function getOrdersByUserId($userId)
+  {
+    $query = "SELECT o.id, p.name, o.quantity, o.order_date 
+              FROM orders o 
+              JOIN products p ON o.product_id = p.id 
+              WHERE o.user_id = :user_id";
+    $stmt = $this->pdo->prepare($query);
+    $stmt->execute([':user_id' => $userId]);
+    return $stmt->fetchAll();
+  }
 
   // Obtener orden por ID
   public function getOrderById($id)
@@ -53,17 +65,16 @@ class OrderDAO
 
   // OrderDAO.php
 
-// Método para actualizar una orden
-public function updateOrder($id, $userId, $productId, $quantity)
-{
+  // Método para actualizar una orden
+  public function updateOrder($id, $userId, $productId, $quantity)
+  {
     $query = "UPDATE orders SET user_id = :user_id, product_id = :product_id, quantity = :quantity WHERE id = :id";
     $stmt = $this->pdo->prepare($query);
     $stmt->execute([
-        ':id' => $id,
-        ':user_id' => $userId,
-        ':product_id' => $productId,
-        ':quantity' => $quantity
+      ':id' => $id,
+      ':user_id' => $userId,
+      ':product_id' => $productId,
+      ':quantity' => $quantity
     ]);
-}
-
+  }
 }

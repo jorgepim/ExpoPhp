@@ -1,10 +1,22 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: userOrders.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Gestión de Productos</title>
     <link rel="stylesheet" href="../assets/css/producto/products.css">
 </head>
+
 <body>
+    <?php include 'partials/navbar.php'; ?>
+
     <div class="container">
         <h1>Gestión de Productos</h1>
 
@@ -59,19 +71,19 @@
 
         function deleteProduct(id) {
             hideMessage();
-            if(confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+            if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
                 fetch(`../actions/ProductActions.php?action=delete&id=${id}`)
-                .then(response => response.text())
-                .then(data => {
-                    if (data.includes('ERROR:')) {
-                        showMessage('Error al eliminar. El producto está asociado a órdenes y no puede ser eliminado.');
-                    } else if (data.trim() === "Producto eliminado correctamente") {
-                        showMessage('Producto eliminado correctamente.', 'success');
-                        setTimeout(() => window.location.reload(), 2000);
-                    } else {
-                        showMessage('Error desconocido al eliminar el producto.');
-                    }
-                });
+                    .then(response => response.text())
+                    .then(data => {
+                        if (data.includes('ERROR:')) {
+                            showMessage('Error al eliminar. El producto está asociado a órdenes y no puede ser eliminado.');
+                        } else if (data.trim() === "Producto eliminado correctamente") {
+                            showMessage('Producto eliminado correctamente.', 'success');
+                            setTimeout(() => window.location.reload(), 2000);
+                        } else {
+                            showMessage('Error desconocido al eliminar el producto.');
+                        }
+                    });
             }
         }
 
@@ -85,7 +97,7 @@
         function hideMessage() {
             document.getElementById('message').style.display = 'none';
         }
-
     </script>
 </body>
+
 </html>

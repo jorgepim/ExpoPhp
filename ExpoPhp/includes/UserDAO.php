@@ -53,17 +53,6 @@ class UserDAO
     ]);
   }
 
-  // Cambiar contraseña (con encriptación)
-  public function updatePassword($id, $newPassword)
-  {
-    $query = "UPDATE users SET password = :password WHERE id = :id";
-    $stmt = $this->pdo->prepare($query);
-    $stmt->execute([
-      ':password' => password_hash($newPassword, PASSWORD_BCRYPT),
-      ':id' => $id
-    ]);
-  }
-
   // Eliminar un usuario
   public function deleteUser($id)
   {

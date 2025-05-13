@@ -1,12 +1,24 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: userOrders.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html>
+
 <head>
-       <link rel="stylesheet" href="../../assets/css/orders/orders.css">
+    <link rel="stylesheet" href="../../assets/css/indexes.css">
     <title>Gestión de Órdenes</title>
 </head>
+
 <body>
+    <?php include 'partials/navbar.php'; ?>
+
     <h1>Listado de Órdenes</h1>
-    <a href="create.php">Registrar Nueva Orden</a>
+    <a href="orderCreate.php">Registrar Nueva Orden</a>
     <table border="1">
         <tr>
             <th>ID</th>
@@ -17,7 +29,7 @@
             <th>Acciones</th>
         </tr>
         <?php
-        require_once __DIR__ . '/../../includes/OrderDAO.php';
+        require_once __DIR__ . '/../includes/OrderDAO.php';
 
         $orderDAO = new OrderDAO();
         $orders = $orderDAO->getAllOrders();
@@ -29,10 +41,15 @@
             echo "<td>{$order['name']}</td>";
             echo "<td>{$order['quantity']}</td>";
             echo "<td>{$order['order_date']}</td>";
-            echo "<td><a href='edit.php?id={$order['id']}'>Editar</a> | <a href='delete.php?id={$order['id']}'>Eliminar</a></td>";
+            echo "<td>
+                    <a href='orderEdit.php?id={$order['id']}'>Editar</a> | 
+                    <a href='../actions/OrderActions.php?action=delete&id={$order['id']}' 
+                       onclick=\"return confirm('¿Estás seguro de eliminar esta orden?');\">Eliminar</a>
+                  </td>";
             echo "</tr>";
         }
         ?>
     </table>
 </body>
+
 </html>

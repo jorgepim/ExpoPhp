@@ -22,13 +22,6 @@ switch ($action) {
     header("Location: ../pages/usersIndex.php");
     break;
 
-  case 'change_password':
-    $id = $_POST['id'];
-    $newPassword = $_POST['new_password'];
-    $userDAO->updatePassword($id, $newPassword);
-    header("Location: ../index.php");
-    break;
-
   case 'delete':
     $id = $_GET['id'];
     $userDAO->deleteUser($id);
@@ -47,6 +40,7 @@ switch ($action) {
 
   case 'logout':
     session_start();
+    session_unset();
     session_destroy();
     header("Location: ../index.php");
     break;
